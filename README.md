@@ -2,6 +2,10 @@
 
 Projeto criado com a finalidade de demonstrar o uso da ferramenta "wait-for-it" em uma aplicação Node + Mysql com Docker.
 
+# Motivação
+
+
+
 # Instalação
 
 ```
