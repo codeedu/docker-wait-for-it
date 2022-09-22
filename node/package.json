@@ -1,0 +1,25 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "docker-wait-for-it",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "docker",
+    "wait-for",
+    "mysql"
+  ],
+  "author": "Lucian Tavares",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.20",
+    "npm": "^8.19.2",
+    "start": "^5.1.0"
+  }
+}

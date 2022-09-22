@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+
+  app: 
+    build: 
+      context: node
+    container_name: app-node
+    ports:
+      - 8080:3000
+    entrypoint: wait-for database:3306 -t 40 -- ./start.sh
+    volumes:
+      - ./node:/usr/src/app
+    depends_on:
+      - database
+
+  database:
+    image: mysql:5.7
+    command: --innodb-use-native-aio=0
+    container_name: app-mysql
+    restart: always
+    tty: true
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=nodedb
