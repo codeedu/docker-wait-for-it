@@ -14,9 +14,9 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node }}
-      - run: npm install
-      - run: npm test
-      - run: npm start
+      - run: docker compose up
+      - run: docker compose exec app bash
+      - run: npm run test
 
       # - name: SonarCloud Scan
       #   uses: SonarSource/sonarcloud-github-action@master
