@@ -17,7 +17,7 @@ jobs:
       - run: docker compose run -d database
       - run: docker compose run -u root -d app
       - name: Waiting environment to be ready
-        run: wget -qO- https://raw.githubusercontent.com/eficode/wait-for/v2.1.3/wait-for | sh -s -- http://localhost:3000/ -- echo success
+        run: wget -qO- https://raw.githubusercontent.com/eficode/wait-for/v2.1.3/wait-for | sh -s -- http://localhost:8080/ -- echo success
       - run: docker compose exec -T app bash -c "npm run test"
 
       # - name: SonarCloud Scan
