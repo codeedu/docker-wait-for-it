@@ -22,7 +22,6 @@ async function createApp() {
   </ul>`
 
     res.send(html)
-
   })
   return app
 }
