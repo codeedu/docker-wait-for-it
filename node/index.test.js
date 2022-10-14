@@ -15,4 +15,10 @@ describe("GET / ", () => {
     expect(response.text).toContain('<h1>Star Wars Characters</h1>')
     expect(response.statusCode).toBe(200)
   })
+
+  test("Deve acessar uma rota errada", async () => {
+    const response = await request(app).get('/error')
+    
+    expect(response.statusCode).toBe(404)
+  })
 })
