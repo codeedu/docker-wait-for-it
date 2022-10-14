@@ -4,7 +4,7 @@ services:
 
   app: 
     build: 
-      context: node
+      context: .
     ports:
       - 8080:3000
     entrypoint: wait-for database:3306 -t 40 -- ./start.sh
