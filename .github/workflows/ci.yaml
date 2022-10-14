@@ -6,14 +6,11 @@ on:
 jobs:
   check-application:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: ['14', '15', '16']
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 16
       - run: docker compose run -d database
       - run: docker compose run -u root -d -p 8080:3000 app
       - name: Waiting environment to be ready
@@ -26,21 +23,21 @@ jobs:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
       #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      # - name: Set up QEMU # responsável por rodar o Docker em diversas arquiteturas
-      #   uses: docker/setup-qemu-action@v2
+      - name: Set up QEMU # responsável por rodar o Docker em diversas arquiteturas
+        uses: docker/setup-qemu-action@v2
 
-      # - name: Set up Docker Buildx # responsável por fazer o build do Dockerfile
-      #   uses: docker/setup-buildx-action@v2
+      - name: Set up Docker Buildx # responsável por fazer o build do Dockerfile
+        uses: docker/setup-buildx-action@v2
 
-      # - name: Login to DockerHub # Realiza o login em nossa conta do Dockerhub
-      #   uses: docker/login-action@v2
-      #   with:
-      #     username: ${{ secrets.DOCKERHUB_USERNAME }}
-      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Login to DockerHub # Realiza o login em nossa conta do Dockerhub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
       
-      # - name: Build and push # Neste step ele faz o build e o push(se estiver true) para o dockerhub
+      - name: Build and push # Neste step ele faz o build e o push(se estiver true) para o dockerhub
 
-      #   uses: docker/build-push-action@v3
-      #   with:
-      #     push: true
-      #     tags: brcwalkers/docker-wait-for-it:latest
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          tags: brcwalkers/docker-wait-for-it:latest
