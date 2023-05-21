@@ -1,4 +1,4 @@
-FROM node:14.17.0-slim
+FROM node:18
 
 RUN apt update && \
     apt install -y wget netcat && \
